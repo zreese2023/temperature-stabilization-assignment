@@ -26,7 +26,7 @@ docker exec -it cse4001 bash
 
 ### Description
 
-In this assignment, you will implement a basic temperature-stabilization system using processes.The multiple processes in the system will communicate with one another using inter-process communication methods. Specifically, your solution to the temperature-stabilization problem will be implemented using **Internet stream (TCP) sockets** for process communication.
+In this assignment, you will implement a basic temperature-stabilization system using processes. The multiple processes in the system will communicate with one another using inter-process communication methods. Specifically, your solution will be implemented using **Internet stream (TCP) sockets** for process communication.
 
 The temperature-stabilization system in this assignment consists of 5 processes. Four **external** processes that send their individual temperatures to a **central** process. The central process will then reply by sending its own calculation of the temperature to the external processes. Once the temperature of the entire system has stabilized, the central process will print a message indicating that the system has stabilized and processes will terminate. Each process will receive (or have) its initial temperature upon creation and will recalculate a new temperature according to two formulas:
 
@@ -53,8 +53,10 @@ Each external process will be uniquely identified by a command-line parameter. T
 ### Implementation details
 
 - Add some instructions on the `README.md` file on how to run your program.
-- Don't worry about killing Zombies. Let them be.  
+- Don't worry about killing Zombies. Let them be. You do not need to implement a multi-connection server. As a result, zoombies are unlikely to be an issue. 
 - The simplest way to start the implementation is to use the sample source code from the following link: https://github.com/eraldoribeiro/tcp_client_server, or any example in which two processes exchange some message packaged as a C structure (i.e., `struct`). Given an example with two processes communicating via TCP sockets, you just need to extend the example to implement the solution of the assignment. 
+
+:fire: ** A common question about the example code in the previous link is: **The example code seems to solve the assignment. What is left to be done?** The answer: Please, read the assignment description and the code to see identify the missing parts that need to be completed. 
 
 ### What to submit
 
