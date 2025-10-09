@@ -4,8 +4,6 @@
 
 This means that you will not write code for OS/161. Instead, you will write and test your code on a Linux or any Unix-based OS, e.g., the Linux environment that comes with your CSE4001 container or any Linux machine, AWS, Mac OS X (Terminal). 
 
-Here’s a tighter, clearer version you can drop into the assignment:
-
 ### Steps to complete the assignment
 
 1. **Fork & clone** the assignment repository to your workspace (e.g., `/root/workspace/`).
