@@ -97,6 +97,53 @@ If you want to learn more about Network Programming and a bit more on the serial
 
 The book is available online free of charge (https://beej.us/guide/bgnet/) and also sold by Amazon.com (https://www.amazon.com/dp/1705309909) if you want a paperback version. 
 
+
+
+# tcp_client_server (Example)
+Starter code example for tcp (socket) client-server system
+
+#### Compilation instructions
+
+```shell
+gcc utils.c tcp_server.c -o server
+gcc -o client tcp_client.c utils.c
+```
+
+#### Here is a typical command line, run each in its own terminal
+
+Open a terminal and run: 
+
+```shell
+./server
+```
+
+Open four terminals and in each one run: 
+
+```shell
+./client <external index> <initial temperature>
+```
+
+##### Example:      
+
+```shell
+./client 1 100
+```
+
+```shell
+./client 2 200
+```
+
+```shell
+./client 3 300
+```
+
+```shell
+./client 4 400
+```
+
+![sample_run](sample_run.jpg)
+
+
 The book is written is a very conversational style that is both enjoyable and accessible. I think you will enjoy reading it. Give it a try if you have time. If you want just to learn about serialization in network communication then read the Section **7.5 Serialization—How to Pack Data** (https://beej.us/guide/bgnet/html/split-wide/slightly-advanced-techniques.html#serialization). 
 
  
