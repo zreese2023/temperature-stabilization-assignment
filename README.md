@@ -16,6 +16,9 @@ This means that you will not write code for OS/161. Instead, you will write and 
 8. **Commit & push**: include source code only (no binaries or build artifacts). Make sure `README.md` contains build/run instructions (commands, args, ports).
 9. **Submit**: paste your repository URL into the Canvas submission box.
 
+:fire: ** A common question about the example code in the previous link is: **The example code seems to solve the assignment. What is left to be done?** 
+
+:high_brightness: **The answer**: Please, read the assignment description and the code to identify the missing parts that need to be completed. 
 
 
 ### If you use the CSE4001 container
@@ -71,10 +74,6 @@ Each external process will be uniquely identified by a command-line parameter. T
 - Add some instructions on the `README.md` file on how to run your program.
 - Don't worry about killing Zombies. Let them be. You do not need to implement a multi-connection server. As a result, zoombies are unlikely to be an issue. 
 - The simplest way to start the implementation is to use the sample source code from the following link: https://github.com/eraldoribeiro/tcp_client_server, or any example in which two processes exchange some message packaged as a C structure (i.e., `struct`). Given an example with two processes communicating via TCP sockets, you just need to extend the example to implement the solution of the assignment. 
-
-:fire: ** A common question about the example code in the previous link is: **The example code seems to solve the assignment. What is left to be done?** 
-
-:high_brightness: **The answer**: Please, read the assignment description and the code to identify the missing parts that need to be completed. 
 
 ### What to submit
 
