@@ -56,7 +56,9 @@ Each external process will be uniquely identified by a command-line parameter. T
 - Don't worry about killing Zombies. Let them be. You do not need to implement a multi-connection server. As a result, zoombies are unlikely to be an issue. 
 - The simplest way to start the implementation is to use the sample source code from the following link: https://github.com/eraldoribeiro/tcp_client_server, or any example in which two processes exchange some message packaged as a C structure (i.e., `struct`). Given an example with two processes communicating via TCP sockets, you just need to extend the example to implement the solution of the assignment. 
 
-:fire: ** A common question about the example code in the previous link is: **The example code seems to solve the assignment. What is left to be done?** The answer: Please, read the assignment description and the code to see identify the missing parts that need to be completed. 
+:fire: ** A common question about the example code in the previous link is: **The example code seems to solve the assignment. What is left to be done?** 
+
+:high_brightness: **The answer**: Please, read the assignment description and the code to identify the missing parts that need to be completed. 
 
 ### What to submit
 
