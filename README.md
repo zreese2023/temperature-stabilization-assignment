@@ -1,8 +1,26 @@
 # Temperature stabilization using inter-process communication
 
-### This is a Linux/Unix OS assignment. It is not an OS/161 Assignment
+### :warning: This is a Linux/Unix OS assignment. It is not an OS/161 Assignment
 
 This means that you will not write code for OS/161. Instead, you will write and test your code on a Linux or any Unix-based OS, e.g., the Linux environment that comes with your CSE4001 container or any Linux machine, AWS, Mac OS X (Terminal). 
+
+Here’s a tighter, clearer version you can drop into the assignment:
+
+### Steps to complete the assignment
+
+1. **Fork & clone** the assignment repository to your workspace (e.g., `/root/workspace/`).
+2. **Understand the spec**: read this assignment carefully and review the sample TCP code to identify missing pieces you must add (multi-process flow, message fields, stabilization check).
+3. **Build a minimal prototype**: implement a two-process version (one client + the central server) that exchanges a temperature message round-trip.
+4. **Scale to all processes**: extend to five processes total (server + four clients), keep persistent TCP connections, and implement the update rules for central/external temps each iteration.
+5. **Add convergence logic**: define a tolerance (e.g., `EPS=1e-3`) and stop when all external temps change less than `EPS` between iterations; broadcast a “done” signal.
+6. **Test thoroughly**: run in five terminals with several initial temperatures (some different) to verify multiple iterations occur before convergence.
+7. **Document & illustrate**: capture screenshots showing all five terminals during execution and at stabilization; place images in the repo and **link them in `README.md`** (verify GitHub renders them correctly).
+8. **Commit & push**: include source code only (no binaries or build artifacts). Make sure `README.md` contains build/run instructions (commands, args, ports).
+9. **Submit**: paste your repository URL into the Canvas submission box.
+
+
+
+### If you use the CSE4001 container
 
 If you use the CSE4001 container, I suggest that you clone the sample code (see link to sample code below) or write your own code in the container’s directory `/root/workspace/`. To run the server and client processes, open multiple terminal windows on the same container. To do that, you can: 
 
@@ -65,6 +83,8 @@ Each external process will be uniquely identified by a command-line parameter. T
 `Add/Commit/Push` the source code of your program into the GitHub repository for the assignment. Do not upload executable files or temporary files that result from the compilation process. 
 
 Describe the execution of your program in the repository's `README.md` file. Here, include figures of relevant screenshots showing the execution of the entire system. For example, if you run each process in a separate terminal, you can capture all terminals working side-by-side into a single screenshot. Submissions without a `README.md` and screenshots showing the program's execution will suffer a 20-point deduction in the grade in the assignment grade. 
+
+Paste the URL of your repository in the Canvas input box for this assignment. 
 
 ### Data serialization and book on network programming
 
