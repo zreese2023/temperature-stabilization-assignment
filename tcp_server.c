@@ -7,7 +7,7 @@
 #include <arpa/inet.h>
 #include <stdbool.h>
 #include "utils.h"
-
+#include <math.h>
 
 #define numExternals 4     // Number of external processes 
 
@@ -54,7 +54,7 @@ int * establishConnectionsFromExternalProcesses()
     printf("Done with binding\n");
     
     // Listen for clients:
-    if(listen(socket_desc, 1) < 0){
+    if(listen(numExternals, 1) < 0){
         printf("Error while listening\n");
         exit(0);
     }
@@ -69,6 +69,7 @@ int * establishConnectionsFromExternalProcesses()
     while (externalCount < numExternals){
 
         // Accept an incoming connection:
+	client_size = sizeof(client_addr);
         client_socket[externalCount] = accept(socket_desc, (struct sockaddr*)&client_addr, &client_size);
         
         if (client_socket[externalCount] < 0){
@@ -102,12 +103,15 @@ int main(void)
     // Establish client connections and return 
     // an array of file descriptors of client sockets. 
     int * client_socket = establishConnectionsFromExternalProcesses(); 
-
-
+    float prev_temps[numExternals];
+    for (int i = 0; i < numExternals; i++) {
+	    prev_temps[i] = 0.0;
+    }
+    int iteration = 0;
 
     int stable = false;
     while ( !stable ){
-
+	iteration++;
         // Array that stores temperatures from clients 
         float temperature[numExternals];
 
@@ -147,9 +151,26 @@ int main(void)
         printf("\n");
 
         // Check stability condition 
-        if (updatedTemp == 0)
-            stable = true; 
+        stable = true;
+	for (int i = 0; i < numExternals; i++) {
+		if (fabs(temperature[i] - prev_temps[i] < EPS)) {
+			stable = false;
+			break;
+		}
+	}
 
+	for (int i = 0; i < numExternals; i++) {
+		prev_temps[i] = temperature[i];
+	}
+
+    }
+
+    // tell clients they are done
+    struct msg done_msg;
+    done_msg.T = -9999.0;
+    done_msg.Index = -1;
+    for (int i = 0; i < numExternals; i++) {
+	    send(client_socket[i], (const void *)&done_msg, sizeof(done_msg), 0);
     }
  
     // Closing all sockets

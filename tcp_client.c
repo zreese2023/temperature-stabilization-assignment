@@ -6,7 +6,9 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include "utils.h"
+#include <math.h>
 
+#define alpha 0.5f
 
 int main (int argc, char *argv[])
 {
@@ -44,26 +46,36 @@ int main (int argc, char *argv[])
     }
     printf("Connected with server successfully\n");
     printf("--------------------------------------------------------\n\n");
-       
-    // Package to the sent to server 
-    the_message = prepare_message(externalIndex, initialTemperature); 
 
-    // Send the message to server:
-    if(send(socket_desc, (const void *)&the_message, sizeof(the_message), 0) < 0){
-        printf("Unable to send message\n");
-        return -1;
-    }
+    bool done = false;
+
+    while(!done) {
+    	// Package to the sent to server 
+    	the_message = prepare_message(externalIndex, initialTemperature); 
+
+	// Send the message to server:
+    	if(send(socket_desc, (const void *)&the_message, sizeof(the_message), 0) < 0){
+            printf("Unable to send message\n");
+            return -1;
+    	}
  
 
-    // Receive the server's response:
-    if(recv(socket_desc, (void *)&the_message, sizeof(the_message), 0) < 0){
-        printf("Error while receiving server's msg\n");
-        return -1;
+        // Receive the server's response:
+        if(recv(socket_desc, (void *)&the_message, sizeof(the_message), 0) < 0){
+            printf("Error while receiving server's msg\n");
+            return -1;
+    	}
+
+	if(the_message.Index == -1 && the_message.T == -9999.0) {
+	    done = 1;
+	    break;
+	}
+    
+    	printf("--------------------------------------------------------\n");
+    	printf("Updated temperature sent by the Central process = %f\n", the_message.T);
+
+	initialTemperature = (initialTemperature + the_message.T) / 2.0;
     }
-    
-    printf("--------------------------------------------------------\n");
-    printf("Updated temperature sent by the Central process = %f\n", the_message.T);
-    
     // Close the socket:
     close(socket_desc);
     
